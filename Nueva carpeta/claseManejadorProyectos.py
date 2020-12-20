@@ -29,7 +29,8 @@ class ManejadorProyectos:
             print("No existe le preyecto")
     def calcularPuntajeProyectos(self):
         '''para cada Proyecto de la colección, calcula el puntaje según reglas de negocio'''
-        
+        for proyec in self.__proyectos:
+            proyec.calcularPuntaje()
     def ordenarProyectosPorPuntaje(self):
         '''invoca a la función sort de las lista, que hace uso del operador sobrecargado en la clase Proyecto __gt__'''
         self.__proyectos.sort()
