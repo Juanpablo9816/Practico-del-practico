@@ -29,7 +29,38 @@ class Proyecto:
         print('-------------------')
         '''imprimr datos del ¨Proyecto'''
         '''luego realizar cálculo de puntaje'''
-        pass
+        puntaje =0
+        if self.__integrantes.getCantidadIntegrantes() >= 3:
+            puntaje += 10
+        else:
+            puntaje += (-20)
+            print("El Proyecto debe tener como mínimo 3 integrantes")
+        cont = 0
+        for i in range(self.__integrantes.getCantidadIntegrantes()):
+            if self.__integrantes.getPersona(i).getRol() == "director":
+                if(self.__integrantes.getPersona(i).getCategoria() == "I") or \
+                    (self.__integrantes.getPersona(i).getCategoria() == "II"):
+                        cont +=1
+                        puntaje += 10
+                else:
+                    puntaje += (-5)
+        contC = 0
+        for i in range(self.__integrantes.getCantidadIntegrantes()):
+            if self.__integrantes.getPersona(i).getRol() == "codirector":
+                if(self.__integrantes.getPersona(i).getCategoria() == "I") or \
+                    (self.__integrantes.getPersona(i).getCategoria() == "II") or \
+                        (self.__integrantes.getPersona(i).getCategoria() == "II"):
+                            contC +=1
+                            puntaje += 10
+                else:
+                    puntaje += (-5)
+                    print("El Codirector del Proyecto debe tener como mínimo categoría III")
+        if contC == 0:
+            print("El proyecto debe tener un Codirector")
+        
+        if contC and cont == 0:
+            puntaje += (-10)
+        self.setPuntaje(puntaje)
     def __gt__(self, otroProyecto):
         '''utilizado para ordenar de mayor a menor los Proyectos, según el puntaje obtenido'''
         pass
